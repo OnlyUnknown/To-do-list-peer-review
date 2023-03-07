@@ -1,9 +1,9 @@
 const check = (event) => {
-  let book = [];
+  let task = [];
   if (localStorage.getItem('used') === null) {
-    book = [];
+    task = [];
   } else {
-    book = JSON.parse(localStorage.getItem('used'));
+    task = JSON.parse(localStorage.getItem('used'));
   }
   const list = event.target.nextSibling;
   const input = event.target;
@@ -13,15 +13,16 @@ const check = (event) => {
 
   const p = event.target.nextSibling.nextSibling.nextSibling.nextSibling.innerHTML;
 
-  for (let i = 0; i < book.length; i += 1) {
-    if (p === String(book[i].index) && book[i].Completed === false) {
-      book[i].Completed = true;
-    } else if (p === String(book[i].index) && book[i].Completed === true) {
-      book[i].Completed = false;
+  task.forEach(e => {
+    if(p === String(e.index) && e.Completed === false){
+      e.Completed = true
+    } else if (p === String(e.index) && e.Completed === true) {
+      e.Completed = false;
     }
-  }
+  });
 
-  localStorage.setItem('used', JSON.stringify(book));
+
+  localStorage.setItem('used', JSON.stringify(task));
 };
 
 export default check;

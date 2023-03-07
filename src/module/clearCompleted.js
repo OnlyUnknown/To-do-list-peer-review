@@ -1,5 +1,6 @@
 const clearC = () => {
   let task = [];
+  let counter = 1
   if (localStorage.getItem('used') === null) {
     task = [];
   } else {
@@ -10,18 +11,24 @@ const clearC = () => {
 
   task = task.filter(clearlist);
 
-  for (let i = 0; i < task.length; i += 1) {
-    task[i].index = i + 1;
-  }
+  task.forEach(e => {
+    e.index = counter
+    counter++
+  });
+
+  
 
   localStorage.setItem('used', JSON.stringify(task));
 
   const flex = document.querySelector('.list');
   flex.innerHTML = `<div class="today">Today's To Do</div>
 <input class="value" type="text" placeholder="Add to the list">`;
-  for (let i = 0; i < task.length; i += 1) {
-    flex.innerHTML += `<div class="flex-list"><input class="checker" type="checkbox"><div class="value-list"> ${task[i].discription} </div> <a class="right" href="#"><i class="fa-sharp fa-solid fa-ellipsis-vertical"></i></a><p class="index">${i + 1}</p></div>`;
-  }
+
+task.forEach(e => {
+  flex.innerHTML += `<div class="flex-list"><input class="checker" type="checkbox"><div class="value-list"> ${e.discription} </div> <a class="right" href="#"><i class="fa-sharp fa-solid fa-ellipsis-vertical"></i></a><p class="index">${e.index}</p></div>`;
+});
+
+  
 };
 
 export default clearC;
