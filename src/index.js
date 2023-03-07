@@ -4,8 +4,8 @@ import { event, adde } from './edit.js';
 import remove from './remove.js';
 import check from './module/completed.js';
 import clearC from './module/clearCompleted.js';
-import { forEach } from 'lodash';
 
+const flex = document.querySelector('.list');
 let task = [];
 if (localStorage.getItem('used') === null) {
   task = [];
@@ -13,23 +13,18 @@ if (localStorage.getItem('used') === null) {
   task = JSON.parse(localStorage.getItem('used'));
 }
 
-const flex = document.querySelector('.list');
-
-task.forEach(e => {
+task.forEach((e) => {
   flex.innerHTML += `<div class="flex-list"><input class="checker" type="checkbox"><div class="value-list"> ${e.discription} </div> <a class="right" href="#"><i class="fa-sharp fa-solid fa-ellipsis-vertical"></i></a><p class="index">${e.index}</p></div>`;
-})
-
+});
 
 const checkInp = document.querySelectorAll('.checker');
 
-task.forEach(e => {
+task.forEach((e) => {
   if (e.Completed === true) {
-    checkInp[e.index-1].checked = true;
-    checkInp[e.index-1].nextSibling.classList.toggle('checked');
+    checkInp[e.index - 1].checked = true;
+    checkInp[e.index - 1].nextSibling.classList.toggle('checked');
   }
-})
-
-
+});
 
 const container = document.querySelector('.container');
 

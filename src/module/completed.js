@@ -13,14 +13,13 @@ const check = (event) => {
 
   const p = event.target.nextSibling.nextSibling.nextSibling.nextSibling.innerHTML;
 
-  task.forEach(e => {
-    if(p === String(e.index) && e.Completed === false){
-      e.Completed = true
+  task.forEach((e) => {
+    if (p === String(e.index) && e.Completed === false) {
+      e.Completed = true;
     } else if (p === String(e.index) && e.Completed === true) {
       e.Completed = false;
     }
   });
-
 
   localStorage.setItem('used', JSON.stringify(task));
 };
